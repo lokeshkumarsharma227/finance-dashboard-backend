@@ -68,7 +68,9 @@ def update_record(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_analyst_or_admin)
 ):
-    return finance_service.update_record(db, current_user.id, record_id, record_update)
+    return finance_service.update_record(
+        db, current_user.id, record_id, record_update, current_user.role
+    )
 
 
 
@@ -79,4 +81,6 @@ def delete_record(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_admin)
 ):
-    return finance_service.delete_record(db, current_user.id, record_id)
+    return finance_service.delete_record(
+        db, current_user.id, record_id, current_user.role  
+    )

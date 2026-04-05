@@ -5,7 +5,7 @@ from app.models.finance import FinanceRecord ,TransactionType
 from app.core.exceptions import NotFoundException, ForbiddenException
 from typing import List, Optional
 from datetime import date
-
+from app.models.user import UserRole
 
 class FinanceService:
     def __init__(self, finance_repo: FinanceRepository):
@@ -40,20 +40,18 @@ class FinanceService:
 
 
    
-    def update_record(self,db: Session,user_id: int,record_id: int,record_update: FinanceRecordUpdate) ->FinanceRecord :
-
+    def update_record(self, db, user_id, record_id, record_update, user_role=None):
         record = self.get_record_by_id(db, record_id)
-        if record.user_id != user_id:
+        if record.user_id != user_id and user_role != UserRole.ADMIN:
             raise ForbiddenException("Not your record")
-        
         return self.finance_repo.update(db, record_id, record_update)
 
 
     
-    def delete_record(self, db: Session, user_id: int, record_id: int) -> FinanceRecord :
+    def delete_record(self, db: Session, user_id: int, record_id: int, user_role: UserRole = None) -> FinanceRecord:
         record = self.get_record_by_id(db, record_id)
-
-        if record.user_id != user_id:
+        if record.user_id != user_id and user_role != UserRole.ADMIN:
             raise ForbiddenException("Not your record")
-
         return self.finance_repo.delete(db, record_id)
+
+ 
