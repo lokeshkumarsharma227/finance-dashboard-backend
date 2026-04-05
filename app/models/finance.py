@@ -4,7 +4,8 @@ from enum import Enum as PyEnum
 from app.models.base import Base
 from sqlalchemy.orm import relationship
 
-
+# Defines the 'finance_records' table.
+# Every record belongs to exactly one user via the user_id foreign key.
 class TransactionType(str,PyEnum):
     INCOME="income"
     EXPENSE="expense"
