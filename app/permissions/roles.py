@@ -1,6 +1,7 @@
 from app.models.user import UserRole
 
-
+# Single source of truth for what each role can do.
+# Adding a new permission means updating this dict — nothing else changes.
 ROLE_PERMISSIONS = {
     UserRole.VIEWER: [
         "read_records",

@@ -5,7 +5,9 @@ from app.repositories.base import BaseRepository
 from app.models.finance import FinanceRecord,TransactionType
 from app.schemas.finance import FinanceRecordUpdate
 
-
+# Extends BaseRepository with finance-specific queries.
+# get_by_filters builds the query dynamically — handles all filter combinations
+# without needing separate methods for each one.
 class FinanceRepository(BaseRepository[FinanceRecord]):
 
     def __init__(self):

@@ -7,7 +7,12 @@ from app.core.exceptions import ForbiddenException, NotFoundException
 from app.db.session import get_db
 from app.models.user import User, UserRole
 from app.repositories.user_repository import UserRepository
-
+# FastAPI dependency functions that protect routes.
+# Each guard builds on the previous one — chain goes:
+# get_current_user → get_current_active_user → get_current_admin
+#
+# Routes just declare which guard they need:
+# current_user: User = Depends(get_current_admin)
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
 user_repo = UserRepository()
 

@@ -1,7 +1,9 @@
 from typing import TypeVar, Generic, Type, Optional, List
 from sqlalchemy.orm import Session
 from app.models.base import Base
-
+# Generic CRUD operations that work for any SQLAlchemy model.
+# UserRepository and FinanceRepository inherit this — no repeated code.
+# ModelType is a placeholder that becomes 'User' or 'FinanceRecord' at runtime.
 
 ModelType = TypeVar("ModelType", bound=Base)
 
@@ -28,3 +30,10 @@ class BaseRepository(Generic[ModelType]):
             db.delete(obj)
             db.commit()
         return obj                       
+    
+
+
+
+
+
+

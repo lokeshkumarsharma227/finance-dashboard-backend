@@ -3,7 +3,8 @@ from sqlalchemy.sql import func
 from enum import Enum as PyEnum
 from app.models.base import Base
 from sqlalchemy.orm import relationship
-
+# Defines the 'users' table and the UserRole enum.
+# Every other part of the app that needs user data starts here.
 class UserRole(str,PyEnum):
     VIEWER="viewer"
     ADMIN="admin"

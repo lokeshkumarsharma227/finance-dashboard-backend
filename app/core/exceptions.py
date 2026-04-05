@@ -1,5 +1,7 @@
 from fastapi import HTTPException, status
-
+# Custom HTTP exceptions with preset status codes.
+# Services raise these — FastAPI automatically converts them to JSON error responses.
+# Much cleaner than writing HTTPException(status_code=404, detail="...") everywhere.
 
 class NotFoundException(HTTPException):
     def __init__(self, detail: str = "Resource not found"):

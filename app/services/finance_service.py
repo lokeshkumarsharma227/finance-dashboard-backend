@@ -6,7 +6,9 @@ from app.core.exceptions import NotFoundException, ForbiddenException
 from typing import List, Optional
 from datetime import date
 from app.models.user import UserRole
-
+# Finance record business logic.
+# Key rule: users can only modify their own records.
+# Admins bypass the ownership check — they can modify anyone's records.
 class FinanceService:
     def __init__(self, finance_repo: FinanceRepository):
         self.finance_repo = finance_repo

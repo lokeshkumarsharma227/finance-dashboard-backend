@@ -4,7 +4,9 @@ from app.models.finance import FinanceRecord, TransactionType
 from app.schemas.dashboard import DashboardSummary, CategorySummary
 from typing import List
 
-
+# Aggregation logic for the dashboard.
+# Runs SUM, COUNT, GROUP BY queries directly — no repository needed here
+# because this isn't CRUD, it's analytics.
 
 
 class DashboardService:

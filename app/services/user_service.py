@@ -6,7 +6,9 @@ from app.core.security import hash_password, verify_password
 from app.core.exceptions import NotFoundException, BadRequestException
 from typing import Optional, List
 
-
+# All user business logic lives here.
+# Routes call this — this calls the repository.
+# Nothing in here touches SQLAlchemy directly.
 
 
 class UserService:

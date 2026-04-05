@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
+# Reads all environment variables from .env file into a single Settings object.
+# Every other file imports 'settings' from here — one source of truth for config.
 
 class Settings(BaseSettings):
     APP_NAME: str
@@ -13,3 +14,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+# Single instance imported everywhere — never instantiate Settings() again

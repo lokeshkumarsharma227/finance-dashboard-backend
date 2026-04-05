@@ -4,7 +4,9 @@ from app.repositories.base import BaseRepository
 from app.models.user import User,UserRole
 from app.schemas.user import UserUpdate
 
-
+# Extends BaseRepository with user-specific queries.
+# get_by_email is called on every login.
+# update uses exclude_unset so only sent fields are changed.
 
 class UserRepository(BaseRepository[User]):
     def __init__(self):
